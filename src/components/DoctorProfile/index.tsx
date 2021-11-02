@@ -17,6 +17,7 @@ const DoctorProfile: FC<IDoctorProfileProps> = ({ doctor }) => {
         xs={12}
         sm={4}
         md={3}
+        xl={2}
         style={{ backgroundColor: '#addfd4' }}
         justifyContent="center"
         p={2}
@@ -42,7 +43,7 @@ const DoctorProfile: FC<IDoctorProfileProps> = ({ doctor }) => {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} md={9} sm={8} p={4}>
+      <Grid item xs={12} md={9} sm={8} xl={8} p={4}>
         <Grid container justifyContent="center">
           <Typography variant="subtitle1" gutterBottom component="div" mb={2}>
             Please, choose a day and time of an appointment
