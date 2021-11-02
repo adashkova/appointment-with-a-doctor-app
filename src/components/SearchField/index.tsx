@@ -35,11 +35,13 @@ const SearchField: FC = () => {
           onChange={handleChange}
         />
       </Grid>
-      <Grid item xs={2}></Grid>
+      <Grid item xs={1}></Grid>
       <Grid item xs={2}>
-        <Button variant="contained" onClick={handleSearch}>
-          Search
-        </Button>
+        <Grid container justifyContent="center" mt={1.5}>
+          <Button variant="contained" onClick={handleSearch}>
+            Search
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );
