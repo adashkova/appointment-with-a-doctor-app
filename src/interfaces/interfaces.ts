@@ -13,6 +13,6 @@ export interface IDoctor {
 export interface IClient {
   firstName: string;
   lastName: string;
-  date: string;
+  date: string ;
   time: string;
 }

@@ -22,6 +22,7 @@ const AppointmentForm: FC = () => {
   } = useForm<IClient>({
     resolver: yupResolver(appointmentSchema),
   });
+
   // Todo type = Date
   const [date, setDate] = useState<any>(null);
   const [time, setTime] = useState<any>(null);

@@ -23,6 +23,9 @@ interface IModalSuccessProps {
 }
 
 const ModalSuccess: FC<IModalSuccessProps> = ({ isOpen, client }) => {
+  const { date, time, firstName, lastName } = client;
+  const timeOfAppointment = new Date(time);
+
   return (
     <Modal
       open={isOpen}
@@ -31,11 +34,17 @@ const ModalSuccess: FC<IModalSuccessProps> = ({ isOpen, client }) => {
     >
       <Box sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          {client && client.firstName} {client && client.lastName}
+          {firstName} {lastName}
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          You have an oppointment at {client.date}
-          {/* {client && <Moment format="YYYY/MM/DD"> {client.date}</Moment>} */}
+          You have an oppointment at
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {timeOfAppointment.getHours()} : {timeOfAppointment.getMinutes()}
+          </Typography>
+          on
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {<Moment format="MM/DD" date={date} />}
+          </Typography>
         </Typography>
       </Box>
     </Modal>
