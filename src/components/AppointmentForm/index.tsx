@@ -45,7 +45,7 @@ const AppointmentForm: FC = () => {
   };
 
   return (
-    <Grid container>
+    <Grid container justifyContent="center">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid item xs={12} mb={2}>
           <Controller
@@ -54,6 +54,7 @@ const AppointmentForm: FC = () => {
                 {...field}
                 className="materialUITextField"
                 placeholder="First Name"
+                style={{ width: 265 }}
               />
             )}
             name="firstName"
@@ -77,6 +78,7 @@ const AppointmentForm: FC = () => {
                 {...field}
                 className="materialUITextField"
                 placeholder="Last Name"
+                style={{ width: 265 }}
               />
             )}
             name="lastName"
