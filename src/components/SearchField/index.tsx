@@ -33,12 +33,13 @@ const SearchField: FC = () => {
           sx={{ mb: 1 }}
           value={searchValue}
           onChange={handleChange}
+          data-testid="textField"
         />
       </Grid>
       <Grid item xs={1}></Grid>
       <Grid item xs={2}>
         <Grid container justifyContent="center" mt={1.5}>
-          <Button variant="contained" onClick={handleSearch}>
+          <Button variant="contained" onClick={handleSearch} data-testid="btn">
             Search
           </Button>
         </Grid>

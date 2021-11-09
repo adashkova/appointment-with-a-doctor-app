@@ -2,8 +2,14 @@ import * as yup from 'yup';
 
 export const appointmentSchema = yup
   .object({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
+    firstName: yup
+      .string()
+      .required()
+      .max(20, 'First name must not exceed 20 characters'),
+    lastName: yup
+      .string()
+      .required()
+      .max(20, 'Last name must not exceed 20 characters'),
     date: yup.string().required(),
     time: yup.string().required(),
   })

@@ -27,7 +27,7 @@ interface IDoctorItemProps {
 
 const DoctorItem: FC<IDoctorItemProps> = ({ doctor, idx }) => (
   <Item>
-    <StyledDoctorLink to={`/doctors/${doctor.name}`}>
+    <StyledDoctorLink to={`/doctors/${doctor.name}`} data-testid="DoctorLink">
       {idx + 1}. {doctor.name} ({doctor.speciality})
     </StyledDoctorLink>
   </Item>

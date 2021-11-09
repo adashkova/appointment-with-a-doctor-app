@@ -28,13 +28,17 @@ const ListOfDoctors: FC = () => {
   };
 
   return (
-    <Grid container direction="column">
+    <Grid container direction="column" data-testid="listOfDoctors">
       {visibleDoctors.length &&
         visibleDoctors.map((doctor: IDoctor, idx: number) => {
           return <DoctorItem doctor={doctor} idx={idx} key={doctor.id} />;
         })}
       {filteredDoctors.length !== 0 && (
-        <Button variant="contained" onClick={handleClick}>
+        <Button
+          variant="contained"
+          onClick={handleClick}
+          data-testid="btnListOfDoctors"
+        >
           Show All
         </Button>
       )}

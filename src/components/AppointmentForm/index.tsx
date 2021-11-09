@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { IClient } from '../../interfaces/interfaces';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useHistory } from 'react-router-dom';
 import { appointmentSchema } from '../../validationSchema/appointmentSchema';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
@@ -18,9 +19,10 @@ const AppointmentForm: FC = () => {
     control,
     setValue,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<IClient>({
     resolver: yupResolver(appointmentSchema),
+    mode: 'onBlur',
   });
 
   // Todo type = Date
@@ -32,70 +34,22 @@ const AppointmentForm: FC = () => {
     date: '',
     time: '',
   });
+  const history = useHistory();
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const handleOpen = () => setIsModalOpen(true);
-  const handleClose = () => setIsModalOpen(false);
 
   const onSubmit = (data: IClient) => {
     setClient(data);
     handleOpen();
     setTimeout(() => {
-      handleClose();
+      history.push('/');
     }, 5000);
   };
 
   return (
     <Grid container justifyContent="center">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid item xs={12} mb={2}>
-          <Controller
-            render={({ field }) => (
-              <TextField
-                {...field}
-                className="materialUITextField"
-                placeholder="First Name"
-                style={{ width: 265 }}
-              />
-            )}
-            name="firstName"
-            control={control}
-            defaultValue=""
-          />
-        </Grid>
-
-        <Grid item xs={12} mb={2}>
-          {errors.firstName && (
-            <Typography color="red" mt={2}>
-              {errors.firstName.message}
-            </Typography>
-          )}
-        </Grid>
-
-        <Grid item xs={12} mb={2}>
-          <Controller
-            render={({ field }) => (
-              <TextField
-                {...field}
-                className="materialUITextField"
-                placeholder="Last Name"
-                style={{ width: 265 }}
-              />
-            )}
-            name="lastName"
-            control={control}
-            defaultValue=""
-          />
-        </Grid>
-
-        <Grid item xs={12} mb={2}>
-          {errors.lastName && (
-            <Typography color="red" mt={2}>
-              {errors.lastName.message}
-            </Typography>
-          )}
-        </Grid>
-
+      <form onSubmit={handleSubmit(onSubmit)} data-testid="appointmentForm">
         <Grid item xs={12} mb={2}>
           <Controller
             name="date"
@@ -110,7 +64,9 @@ const AppointmentForm: FC = () => {
                     setDate(value);
                     setValue('date', value);
                   }}
-                  renderInput={(params: any) => <TextField {...params} />}
+                  renderInput={(params: any) => (
+                    <TextField {...params} data-testid="datePicker" />
+                  )}
                 />
               </LocalizationProvider>
             )}
@@ -135,7 +91,9 @@ const AppointmentForm: FC = () => {
                     setTime(value);
                     setValue('time', value);
                   }}
-                  renderInput={(params: any) => <TextField {...params} />}
+                  renderInput={(params: any) => (
+                    <TextField {...params} data-testid="timePicker" />
+                  )}
                   minTime={new Date(0, 0, 0, 8)}
                   maxTime={new Date(0, 0, 0, 18, 45)}
                 />
@@ -147,6 +105,56 @@ const AppointmentForm: FC = () => {
           />
         </Grid>
         <Grid item xs={12} mb={2}>
+          <Controller
+            render={({ field }) => (
+              <TextField
+                {...field}
+                className="materialUITextField"
+                placeholder="First Name"
+                style={{ width: 265 }}
+                data-testid="firstNameInput"
+              />
+            )}
+            name="firstName"
+            control={control}
+            defaultValue=""
+          />
+        </Grid>
+
+        <Grid item xs={12} mb={2}>
+          {errors.firstName && (
+            <Typography color="red" mt={2}>
+              {errors.firstName.message}
+            </Typography>
+          )}
+        </Grid>
+
+        <Grid item xs={12} mb={2}>
+          <Controller
+            render={({ field }) => (
+              <TextField
+                {...field}
+                className="materialUITextField"
+                placeholder="Last Name"
+                style={{ width: 265 }}
+                data-testid="lastNameInput"
+              />
+            )}
+            name="lastName"
+            control={control}
+            defaultValue=""
+          />
+        </Grid>
+
+        <Grid item xs={12} mb={2}>
+          {errors.lastName && (
+            <Typography color="red" mt={2}>
+              {errors.lastName.message}
+            </Typography>
+          )}
+        </Grid>
+
+        <Grid item xs={12} mb={2}>
           {errors.time && (
             <Typography color="red" mt={2}>
               {errors.time.message}
@@ -154,7 +162,7 @@ const AppointmentForm: FC = () => {
           )}
         </Grid>
 
-        <Button fullWidth type="submit">
+        <Button fullWidth type="submit" disabled={!isValid}>
           Submit
         </Button>
       </form>

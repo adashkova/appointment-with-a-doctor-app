@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useSelector, useDispatch, connect } from 'react-redux';
 import { RootState } from '../../store/store';
 import { IDoctor } from '../../interfaces/interfaces';
@@ -29,6 +29,7 @@ const SpecialityFiltration: FC = () => {
         id="demo-simple-select-standard"
         value={speciality}
         onChange={e => handleChange(e)}
+        data-testid="specialityFiltration"
       >
         <MenuItem value="">
           <em>All</em>

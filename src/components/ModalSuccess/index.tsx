@@ -37,7 +37,7 @@ const ModalSuccess: FC<IModalSuccessProps> = ({ isOpen, client }) => {
           {firstName} {lastName}
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          You have an oppointment at
+          You have an appointment at
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {timeOfAppointment.getHours()} : {timeOfAppointment.getMinutes()}
           </Typography>

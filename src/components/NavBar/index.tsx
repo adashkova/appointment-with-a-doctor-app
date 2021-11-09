@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Icon from '@mui/material/Icon';
 
 const NavBar: FC = ({ children }) => (
-  <Box sx={{ flexGrow: 1 }}>
+  <Box sx={{ flexGrow: 1 }} data-testid="NavBar">
     <AppBar position="static" style={{ backgroundColor: '#8acab5' }}>
       <Toolbar>
         <Icon>home</Icon>
