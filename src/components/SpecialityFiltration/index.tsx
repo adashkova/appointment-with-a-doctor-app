@@ -14,7 +14,7 @@ const SpecialityFiltration: FC = () => {
 
   const dispatch = useDispatch();
 
-  const { doctors } = doctorsState;
+  const { doctors, filteredDoctors } = doctorsState;
 
   const handleChange = (event: any) => {
     setSpeciality(event.target.value);
@@ -27,18 +27,19 @@ const SpecialityFiltration: FC = () => {
       <Select
         labelId="demo-simple-select-standard-label"
         id="demo-simple-select-standard"
-        value={speciality}
+        value={!filteredDoctors.length ? '' : speciality}
         onChange={e => handleChange(e)}
         data-testid="specialityFiltration"
       >
         <MenuItem value="">
           <em>All</em>
         </MenuItem>
-        {doctors.map((doctor: IDoctor) => (
-          <MenuItem value={doctor.speciality} key={doctor.id}>
-            {doctor.speciality}
-          </MenuItem>
-        ))}
+        {doctors &&
+          doctors.map((doctor: IDoctor) => (
+            <MenuItem value={doctor.speciality} key={doctor.id}>
+              {doctor.speciality}
+            </MenuItem>
+          ))}
       </Select>
     </FormControl>
   );

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { IClient } from '../../interfaces/interfaces';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -104,6 +104,15 @@ const AppointmentForm: FC = () => {
             defaultValue=""
           />
         </Grid>
+
+        <Grid item xs={12} mb={2}>
+          {errors.time && (
+            <Typography color="red" mt={2}>
+              {errors.time.message}
+            </Typography>
+          )}
+        </Grid>
+
         <Grid item xs={12} mb={2}>
           <Controller
             render={({ field }) => (
@@ -150,14 +159,6 @@ const AppointmentForm: FC = () => {
           {errors.lastName && (
             <Typography color="red" mt={2}>
               {errors.lastName.message}
-            </Typography>
-          )}
-        </Grid>
-
-        <Grid item xs={12} mb={2}>
-          {errors.time && (
-            <Typography color="red" mt={2}>
-              {errors.time.message}
             </Typography>
           )}
         </Grid>
