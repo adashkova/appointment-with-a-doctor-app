@@ -7,6 +7,7 @@ const {
   GET_DOCTORS,
   SHOW_DOCTORS_BY_NAME,
   CLEAR_FILTERS,
+  IS_DOCTOR_BY_NAME
 } = ActionTypes;
 
 export const getDoctors = (doctors: IDoctor[] = listOfDoctors) => ({
@@ -22,6 +23,9 @@ export const showDoctorsBySpeciality = (speciality: string) => ({
 export const showDoctorsByName = (name: string) => ({
   type: SHOW_DOCTORS_BY_NAME,
   payload: name,
+});
+export const isDoctorByName = () => ({
+  type: IS_DOCTOR_BY_NAME,
 });
 
 export const clearFilters = () => ({

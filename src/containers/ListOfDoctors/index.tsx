@@ -5,7 +5,7 @@ import { IDoctor } from '../../interfaces/interfaces';
 import { getDoctors, clearFilters } from '../../store/actions/actions';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import DoctorItem from '../DoctorItem';
+import DoctorItem from '../../components/DoctorItem';
 
 const ListOfDoctors: FC = () => {
   const doctorsState = useSelector((state: RootState) => state.doctors);

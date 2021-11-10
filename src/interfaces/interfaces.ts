@@ -5,6 +5,7 @@ export interface IAction {
 
 export interface IDoctor {
   id: number;
+  avatar: string,
   name: string;
   speciality: string;
   clients?: IClient[];

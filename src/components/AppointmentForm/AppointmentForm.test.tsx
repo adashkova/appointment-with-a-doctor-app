@@ -20,13 +20,13 @@ describe('AppointmentForm component', () => {
     render(<AppointmentForm />);
 
     await act(async () => {
-      userEvent.type(screen.getByPlaceholderText(/First Name/i), 'Mary');
-      userEvent.type(screen.getByPlaceholderText(/Last Name/i), 'Smith');
       userEvent.type(screen.getByTestId(/timePicker/i), '11:15 am');
       userEvent.type(screen.getByTestId(/datePicker/i), '11 09 2021');
+      userEvent.type(screen.getByPlaceholderText(/First Name/i), 'Mary');
+      userEvent.type(screen.getByPlaceholderText(/Last Name/i), 'Smith');
     });
 
-    //expect(await screen.findByRole('button')).toBeEnabled();
+    expect(screen.getByRole('button').getAttribute('disabled')).toBe('');
   });
 
   it('on initial render last name input is visible', () => {

@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import { IClient } from '../../interfaces/interfaces';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,6 +13,7 @@ import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DatePicker from '@material-ui/lab/DatePicker';
 import TimePicker from '@material-ui/lab/TimePicker';
 import ModalSuccess from '../ModalSuccess';
+import SendIcon from '@mui/icons-material/Send';
 
 const AppointmentForm: FC = () => {
   const {
@@ -22,7 +23,7 @@ const AppointmentForm: FC = () => {
     formState: { errors, isValid },
   } = useForm<IClient>({
     resolver: yupResolver(appointmentSchema),
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
   // Todo type = Date
@@ -165,6 +166,7 @@ const AppointmentForm: FC = () => {
 
         <Button fullWidth type="submit" disabled={!isValid}>
           Submit
+          <SendIcon style={{ marginLeft: 10 }} />
         </Button>
       </form>
       <ModalSuccess isOpen={isModalOpen} client={client} />

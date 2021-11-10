@@ -24,7 +24,7 @@ const DoctorProfile: FC<IDoctorProfileProps> = ({ doctor }) => (
       <Grid container justifyContent="center">
         <Avatar
           alt="Remy Sharp"
-          src="https://media.istockphoto.com/vectors/doctor-icon-design-vector-id1163876251?k=20&m=1163876251&s=612x612&w=0&h=3uVSSBeevGWRNiBqEUoYP7Q1rzEFxijL1s-CuobbAFU="
+          src={doctor && doctor.avatar}
           sx={{ width: 100, height: 100, marginBottom: 2 }}
         />
 

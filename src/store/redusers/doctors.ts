@@ -10,6 +10,7 @@ const {
   SHOW_DOCTORS_BY_SPECIALITY,
   SHOW_DOCTORS_BY_NAME,
   CLEAR_FILTERS,
+  IS_DOCTOR_BY_NAME,
 } = ActionTypes;
 
 const initialState = {
@@ -23,7 +24,7 @@ interface IInitialState {
   doctors: IDoctor[];
   filteredDoctors: IDoctor[];
   isLoading: boolean;
-  isError: undefined;
+  isError: undefined | string;
 }
 
 export const doctors = (
@@ -70,10 +71,17 @@ export const doctors = (
         ...state,
         isLoading: true,
       };
+
     case CLEAR_FILTERS:
       return {
         ...state,
         filteredDoctors: [],
+      };
+
+    case IS_DOCTOR_BY_NAME:
+      return {
+        ...state,
+        isError: !state.filteredDoctors.length ? 'Not found' : undefined,
       };
 
     case GET_DOCTORS_ERROR:

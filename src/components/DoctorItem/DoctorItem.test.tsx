@@ -7,7 +7,7 @@ import store from '../../store/store';
 import DoctorItem from '.';
 
 describe('DoctorItem component', () => {
-  it('IsDisabled or visible or notEmpty Link', () => {
+  it('IsDisabled or visible', () => {
     render(
       <Provider store={store}>
         <Router>
@@ -15,6 +15,8 @@ describe('DoctorItem component', () => {
             idx={5}
             doctor={{
               id: 6,
+              avatar:
+                'https://media.istockphoto.com/vectors/doctor-icon-design-vector-id1163876251?k=20&m=1163876251&s=612x612&w=0&h=3uVSSBeevGWRNiBqEUoYP7Q1rzEFxijL1s-CuobbAFU=',
               name: 'Oliver Garcia',
               speciality: 'Osteopaths',
               clients: [],
@@ -26,6 +28,5 @@ describe('DoctorItem component', () => {
     const div = screen.getByTestId(/DoctorLink/i);
     expect(div).toBeVisible();
     expect(div).not.toBeDisabled();
-    expect(div).not.toBeEmptyDOMElement();
   });
 });

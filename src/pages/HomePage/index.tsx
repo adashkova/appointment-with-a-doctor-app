@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import Layout from '../../components/Layout';
-import ListOfDoctors from '../../components/ListOfDoctors';
-import SpecialityFiltration from '../../components/SpecialityFiltration';
-import SearchField from '../../components/SearchField';
+import ListOfDoctors from '../../containers/ListOfDoctors';
+import SpecialityFiltration from '../../containers/SpecialityFiltration';
+import SearchField from '../../containers/SearchField';
 
 const HomePage: FC = () => {
   return (

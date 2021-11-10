@@ -12,8 +12,8 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
+  border: '1px solid #767978',
+  boxShadow: 10,
   p: 4,
 };
 
@@ -33,18 +33,17 @@ const ModalSuccess: FC<IModalSuccessProps> = ({ isOpen, client }) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          {firstName} {lastName}
+        <Typography id="modal-modal-title" variant="h5" component="h1">
+          SUCCESSFULLY!
         </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          You have an appointment at
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {timeOfAppointment.getHours()} : {timeOfAppointment.getMinutes()}
-          </Typography>
-          on
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {<Moment format="MM/DD" date={date} />}
-          </Typography>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          {firstName} {lastName}, you have an appointment at
+        </Typography>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Moment format="hh : mm" date={timeOfAppointment} />
+        </Typography>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Moment format="MM / DD" date={date} />
         </Typography>
       </Box>
     </Modal>

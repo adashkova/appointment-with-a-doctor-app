@@ -1,12 +1,19 @@
 import React, { FC, useState } from 'react';
-import { useDispatch, connect } from 'react-redux';
-import { showDoctorsByName } from '../../store/actions/actions';
+import { useDispatch, useSelector, connect } from 'react-redux';
+import { showDoctorsByName, isDoctorByName } from '../../store/actions/actions';
+import { RootState } from '../../store/store';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import SearchIcon from '@mui/icons-material/Search';
+import Alert from '@mui/material/Alert';
 
 const SearchField: FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
+  const [isNoName, setIsNoName] = useState<boolean>(false);
+  const doctorsState = useSelector((state: RootState) => state.doctors);
+
+  const { isError } = doctorsState;
 
   const dispatch = useDispatch();
 
@@ -14,15 +21,30 @@ const SearchField: FC = () => {
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
     setSearchValue(e.target.value.toLocaleLowerCase());
+    setIsNoName(false);
   };
 
   const handleSearch = () => {
-    dispatch(showDoctorsByName(searchValue));
+    if (!searchValue) {
+      setIsNoName(true);
+    } else {
+      dispatch(showDoctorsByName(searchValue));
+      dispatch(isDoctorByName());
+    }
   };
-  // TODO reset speciality
 
   return (
     <Grid container>
+      {isError && (
+        <Alert variant="outlined" severity="error" style={{ marginBottom: 15 }}>
+          Doctor with that name not found!
+        </Alert>
+      )}
+      {isNoName && (
+        <Alert variant="outlined" severity="error" style={{ marginBottom: 15 }}>
+          Please, inter name or last name!
+        </Alert>
+      )}
       <Grid item xs={8}>
         <TextField
           fullWidth
@@ -36,11 +58,11 @@ const SearchField: FC = () => {
           data-testid="textField"
         />
       </Grid>
-      <Grid item xs={1}></Grid>
+
       <Grid item xs={2}>
         <Grid container justifyContent="center" mt={1.5}>
           <Button variant="contained" onClick={handleSearch} data-testid="btn">
-            Search
+            <SearchIcon />
           </Button>
         </Grid>
       </Grid>
