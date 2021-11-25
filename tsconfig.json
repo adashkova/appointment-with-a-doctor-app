@@ -23,5 +23,5 @@
   },
   "include": [
     "src"
-, "jest.config.ts"  ]
+, "jest.config.ts", "stabs/doctors.ts", "tests/components/SpecialityFiltration.test.tsx", "tests/SearchField.test.tsx", "tests/components/ListOfDoctors.test.tsx", "tests/components/NavBar.test.tsx", "tests/components/DoctorItem.test.tsx", "tests/components/AppointmentForm.test.tsx", "tests/setupTests.ts"  ]
 }
