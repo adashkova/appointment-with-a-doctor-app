@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
+      "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+     
     ],
     "types": ["cypress", "@testing-library/cypress"],
     "allowJs": true,
@@ -23,5 +24,5 @@
   },
   "include": [
     "src"
-, "jest.config.ts", "stabs/doctors.ts", "tests/components/SpecialityFiltration.test.tsx", "tests/SearchField.test.tsx", "tests/components/ListOfDoctors.test.tsx", "tests/components/NavBar.test.tsx", "tests/components/DoctorItem.test.tsx", "tests/components/AppointmentForm.test.tsx", "tests/setupTests.ts"  ]
+, "jest.config.ts", "stabs/doctors.ts", "src/tests/components/SpecialityFiltration.test.tsx", "src/tests/SearchField.test.tsx", "src/tests/components/ListOfDoctors.test.tsx", "src/tests/components/NavBar.test.tsx", "src/tests/components/DoctorItem.test.tsx", "src/tests/components/AppointmentForm.test.tsx", "src/tests/setupTests.ts", "src/tests"  ]
 }
